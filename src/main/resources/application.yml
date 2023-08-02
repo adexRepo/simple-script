@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/simplescript?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false&noAccessToProcedureBodies=true
+    username: root
+    password:
+    hikari:
+      connectionTimeout: 30000 
+      idleTimeout: 600000 
+      maxLifetime: 1800000
+      maximumPoolSize: 200
+  
+javafx:
+  title: Evaluation App
+  stage:
+    resizable: true
+  main:
+    tree: true
