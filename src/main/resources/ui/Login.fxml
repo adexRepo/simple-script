@@ -18,13 +18,18 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="524.0" prefWidth="566.0">
                <children>
-                  <HBox prefHeight="230.0" prefWidth="377.0" />
-                  <Label fx:id="lblLogin1" alignment="CENTER" prefHeight="45.0" prefWidth="377.0" text="AHP Application" textFill="WHITE">
+                  <HBox prefHeight="178.0" prefWidth="377.0" />
+                  <Label fx:id="lblLogin1" alignment="CENTER" prefHeight="67.0" prefWidth="377.0" text="Application" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblLogin12" alignment="CENTER" prefHeight="45.0" prefWidth="377.0" text="Study Case Koperasi" textFill="WHITE">
+                  <Label fx:id="lblLogin12" alignment="CENTER" contentDisplay="TEXT_ONLY" lineSpacing="3.0" prefHeight="30.0" prefWidth="366.0" text="Pendukung Keputusan Pemberian Kredit Pada Koperasi Simpan Pinjam" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblLogin121" alignment="CENTER" contentDisplay="TEXT_ONLY" lineSpacing="3.0" prefHeight="27.0" prefWidth="366.0" text="Pada Koperasi Simpan Pinjam" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="System Bold" size="19.0" />
                      </font>
@@ -34,7 +39,7 @@
             <VBox alignment="TOP_CENTER" prefHeight="328.0" prefWidth="563.0" style="-fx-background-color: white;">
                <children>
                   <HBox prefHeight="123.0" prefWidth="374.0" />
-                  <Label fx:id="lblLogin11" alignment="CENTER" prefHeight="45.0" prefWidth="377.0" text="Wellcome" textFill="#287bff">
+                  <Label fx:id="lblLogin11" alignment="CENTER" prefHeight="45.0" prefWidth="377.0" text="Login" textFill="#287bff">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>

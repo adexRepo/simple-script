@@ -20,6 +20,7 @@ public class AhpServiceImpl implements AhpService{
         double[] priorityVector = new double[matrix.length];
         for (int i = 0; i < matrix.length; i++) {
             priorityVector[i] = eigenvalues[i] / maxEigenvalue;
+            System.out.format("%.3f ",priorityVector[i]);
         }
 
         return priorityVector;

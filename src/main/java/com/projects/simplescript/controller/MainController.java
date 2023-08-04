@@ -11,13 +11,14 @@ import java.util.ResourceBundle;
 import org.springframework.stereotype.Component;
 
 import com.projects.simplescript.constant.DataStorage;
+import com.projects.simplescript.controller.biz.koperasi.AnggotaController;
+import com.projects.simplescript.controller.biz.koperasi.KriteriaController;
 import com.projects.simplescript.model.MenuItem;
 import com.projects.simplescript.services.MenuService;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -36,7 +37,7 @@ public class MainController implements Initializable {
 
     private final MenuService menuService;
 
-    // private final FxWeaver fxWeaver;
+    private final FxWeaver fxWeaver;
 
     @FXML
     private MenuBar menuBar;
@@ -118,8 +119,17 @@ public class MainController implements Initializable {
                 tab.getSelectionModel().select(existingTab.get());
             } else {
                 Tab newTab = new Tab(tabName);
-                boolean isGrid = storage.getMenuItems().stream()
-                        .anyMatch(val -> val.getName().equals(tabName) && val.getGridId() != null);
+                if(tabName.equals("Kriteria")){
+                  Parent root = fxWeaver.loadView(KriteriaController.class);
+                  newTab.setContent(root);
+                }else if(tabName.equals("Anggota")){
+                    Parent root = fxWeaver.loadView(AnggotaController.class);
+                    newTab.setContent(root);
+                }
+
+
+                // boolean isGrid = storage.getMenuItems().stream()
+                //         .anyMatch(val -> val.getName().equals(tabName) && val.getGridId() != null);
                 // if (isGrid) {
                 //     storage.getCache().put("tabName", tabName);
                 //     Parent root = fxWeaver.loadView(FrameGridController.class);

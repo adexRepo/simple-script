@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" fx:controller="com.projects.simplescript.controller.biz.koperasi.AnggotaController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="233.0" layoutY="24.0" text="Anggota Koperasi">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnAddNewAnggota" layoutX="17.0" layoutY="330.0" mnemonicParsing="false" text="Add New Anggota" />
+      <TableView fx:id="tbAnggota" layoutX="17.0" layoutY="76.0" prefHeight="244.0" prefWidth="800.0">
+        <columns>
+          <TableColumn fx:id="idAnggota"  prefWidth="56.0" text="No" />
+          <TableColumn fx:id="namaAnggota"  prefWidth="186.0" text="Nama anggota" />
+            <TableColumn fx:id="alamatAnggota" prefWidth="450.0" text="Alamat" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnRead" layoutX="461.0" layoutY="342.0" mnemonicParsing="false" onAction="#onReadAnggota" text="Read" />
+      <Button fx:id="btnDelete" layoutX="584.0" layoutY="342.0" mnemonicParsing="false" onAction="#onDeleteAnggota" text="Delete" />
+      <Button fx:id="btnUpdate" layoutX="517.0" layoutY="342.0" mnemonicParsing="false" onAction="#onUpdateAnggota" text="Update" />
+   </children>
+</AnchorPane>

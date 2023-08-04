@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tbPerhitunganBerpasangan" prefHeight="283.0" prefWidth="710.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="633.0" text="Matriks Perbandingan Berpasangan">
+               <columns>
+                <TableColumn prefWidth="75.0" text="Biaya pendidikan" />
+                  <TableColumn prefWidth="75.0" text="Pembelian Rumah" />
+                  <TableColumn prefWidth="75.0" text="Perbaikan Rumah" />
+                  <TableColumn prefWidth="75.0" text="Pembayaran Tepat Waktu" />
+                  <TableColumn prefWidth="76.0" text="Catatan Pinjaman" />
+                  <TableColumn minWidth="7.0" prefWidth="74.0" text="Tanggungan Anak" />
+               </columns>
+            </TableColumn>
+        </columns>
+      </TableView>
+      <Button fx:id="btnLihatMatriks" layoutX="375.0" layoutY="411.0" mnemonicParsing="false" text="Lihat Matriks" />
+      <Button fx:id="btnLihatSubKriteria" layoutX="473.0" layoutY="411.0" mnemonicParsing="false" text="Lihat Sub Kriteria" />
+      <Button fx:id="btnSimpanKrkiteria" layoutX="595.0" layoutY="411.0" mnemonicParsing="false" text="Simpan Krtiteria" />
+   </children>
+</AnchorPane>

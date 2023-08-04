@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tbHasilPerhitungan" layoutX="35.0" layoutY="48.0" prefHeight="428.0" prefWidth="684.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Nama Anggota" />
+          <TableColumn prefWidth="75.0" text="Biaya Pendidikan" />
+            <TableColumn prefWidth="75.0" text="Pembelian Rumah" />
+            <TableColumn prefWidth="75.0" text="Peraikan Rumah" />
+            <TableColumn prefWidth="75.0" text="Pembayaran Tepat Waktu" />
+            <TableColumn prefWidth="75.0" text="Catatan Pinjaman" />
+            <TableColumn prefWidth="75.0" text="Tanggungan Anak" />
+            <TableColumn prefWidth="75.0" text="Total" />
+            <TableColumn prefWidth="75.0" text="Status" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
