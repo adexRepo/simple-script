@@ -7,23 +7,41 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projects.simplescript.controller.biz.koperasi.AlternativeController">
    <children>
-      <Label layoutX="21.0" layoutY="30.0" text="Alternatif List">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnTambah" layoutX="21.0" layoutY="62.0" mnemonicParsing="false" text="Tambah" />
-      <TableView fx:id="tbAlternatif" layoutY="114.0" prefHeight="189.0" prefWidth="600.0">
+      <TableView fx:id="tblKuisioner" layoutX="14.0" layoutY="69.0" prefHeight="123.0" prefWidth="704.0">
         <columns>
-          <TableColumn prefWidth="61.0" text="No" />
-          <TableColumn prefWidth="199.0" text="Nama Anggota" />
-            <TableColumn prefWidth="199.0" text="Alamat" />
-            <TableColumn prefWidth="140.0" text="Status" />
+          <TableColumn fx:id="coll1" prefWidth="67.0" text="Alternatif" />
+          <TableColumn fx:id="coll2" prefWidth="108.0" text="Biaya Pendidikan" />
+            <TableColumn fx:id="coll3" prefWidth="107.0" text="Pembelian Rumah" />
+            <TableColumn fx:id="coll4" prefWidth="107.0" text="Perbaikan Rumah" />
+            <TableColumn fx:id="coll5" prefWidth="121.0" text="Bayar Tepat Waktu" />
+            <TableColumn fx:id="coll6" prefWidth="110.0" text="Catatan Pinjaman" />
+            <TableColumn fx:id="coll7" prefWidth="82.0" text="Tanggungan" />
         </columns>
       </TableView>
-      <Button fx:id="btnEdit" layoutX="482.0" layoutY="314.0" mnemonicParsing="false" text="Edit" />
-      <Button fx:id="btnDelete" layoutX="529.0" layoutY="314.0" mnemonicParsing="false" text="Delete" />
+      <TableView fx:id="tblKodifikasi" layoutX="14.0" layoutY="272.0" prefHeight="136.0" prefWidth="546.0">
+         <columns>
+            <TableColumn fx:id="col11" prefWidth="112.0" text="Alternatif" />
+            <TableColumn fx:id="col22" text="K1" />
+            <TableColumn fx:id="col33" prefWidth="68.0" text="K2" />
+            <TableColumn fx:id="col44" prefWidth="75.0" text="K3" />
+            <TableColumn fx:id="col55" prefWidth="78.0" text="K4" />
+            <TableColumn fx:id="col66" prefWidth="67.0" text="K5" />
+            <TableColumn fx:id="col77" prefWidth="67.0" text="K6" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnUpdate" layoutX="628.0" layoutY="205.0" mnemonicParsing="false" onAction="#onUpdate" text="Update Data" />
+      <Label layoutX="384.0" layoutY="40.0" />
+      <Label layoutX="14.0" layoutY="31.0" text="Hasil Kuisioner">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="12.0" layoutY="230.0" text="Hasil Kodifikasi">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -1,5 +1,8 @@
 package com.projects.simplescript;
 
+import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.SingularValueDecomposition;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -79,6 +82,65 @@ class SimpleScriptApplicationTests {
         System.out.println("Criteria Weights: " + java.util.Arrays.toString(criteriaWeights));
         for (int i = 0; i < alternatives.length; i++) {
             System.out.println("Weight for " + alternatives[i] + ": " + alternativeWeights[i]);
+        }
+    }
+
+
+    @Test
+    void testData(){
+
+         double[][] matrix = {
+            {3, 1, 0, 1, 2, 2},
+            {2, 0, 1, 1, 3, 3},
+            {4, 1, 0, 1, 1, 1}
+        };
+
+        int numAlternatives = matrix.length;
+        int numCriteria = matrix[0].length;
+
+        // Normalize matrix columns
+        for (int col = 0; col < numCriteria; col++) {
+            double colSum = 0;
+            for (int row = 0; row < numAlternatives; row++) {
+                colSum += matrix[row][col];
+            }
+            for (int row = 0; row < numAlternatives; row++) {
+                matrix[row][col] /= colSum;
+            }
+        }
+
+        // Calculate priorities using Singular Value Decomposition
+        RealMatrix normalizedMatrix = MatrixUtils.createRealMatrix(matrix);
+        printMatrix(normalizedMatrix);
+        SingularValueDecomposition svd = new SingularValueDecomposition(normalizedMatrix);
+        RealMatrix rightSingularVectors = svd.getV();
+
+        // Calculate priorities (eigenvectors) from right singular vectors
+        double[] priorities = new double[numAlternatives];
+        for (int row = 0; row < numAlternatives; row++) {
+            double sum = 0;
+            for (int col = 0; col < numCriteria; col++) {
+                sum += rightSingularVectors.getEntry(col, row);
+            }
+            priorities[row] = sum / numCriteria;
+        }
+
+        // Display priorities
+        System.out.println("Priorities:");
+        for (int i = 0; i < numAlternatives; i++) {
+            System.out.println("Alternative " + (char)('A' + i) + ": " + priorities[i]);
+        }
+    }
+
+    public static void printMatrix(RealMatrix matrix) {
+        int numRows = matrix.getRowDimension();
+        int numCols = matrix.getColumnDimension();
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
+                System.out.print(matrix.getEntry(i, j) + "\t");
+            }
+            System.out.println();
         }
     }
 }

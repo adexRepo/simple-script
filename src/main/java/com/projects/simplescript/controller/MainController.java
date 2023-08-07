@@ -11,8 +11,11 @@ import java.util.ResourceBundle;
 import org.springframework.stereotype.Component;
 
 import com.projects.simplescript.constant.DataStorage;
+import com.projects.simplescript.controller.biz.koperasi.AlternativeController;
 import com.projects.simplescript.controller.biz.koperasi.AnggotaController;
+import com.projects.simplescript.controller.biz.koperasi.HasilPerhitunganController;
 import com.projects.simplescript.controller.biz.koperasi.KriteriaController;
+import com.projects.simplescript.controller.biz.koperasi.PerbandinganController;
 import com.projects.simplescript.model.MenuItem;
 import com.projects.simplescript.services.MenuService;
 
@@ -124,6 +127,15 @@ public class MainController implements Initializable {
                   newTab.setContent(root);
                 }else if(tabName.equals("Anggota")){
                     Parent root = fxWeaver.loadView(AnggotaController.class);
+                    newTab.setContent(root);
+                }else if(tabName.equals("Alternatif")){
+                    Parent root = fxWeaver.loadView(AlternativeController.class);
+                    newTab.setContent(root);
+                }else if(tabName.equals("Perbandingan")){
+                    Parent root = fxWeaver.loadView(PerbandinganController.class);
+                    newTab.setContent(root);
+                }else if(tabName.equals("Hasil Perhitungan")){
+                    Parent root = fxWeaver.loadView(HasilPerhitunganController.class);
                     newTab.setContent(root);
                 }
 
