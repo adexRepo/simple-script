@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
-import com.projects.simplescript.model.biz.DummyData;
+import com.projects.simplescript.model.biz.Calculation;
 import com.projects.simplescript.model.biz.MatrixBobot;
 import com.projects.simplescript.model.biz.MatrixInputAndNormalisasi;
 
@@ -92,7 +92,7 @@ public class PerbandinganController implements Initializable {
         col6.setCellValueFactory(new PropertyValueFactory<>("k6"));
         col7.setCellValueFactory(new PropertyValueFactory<>("k7"));
 
-        List<MatrixInputAndNormalisasi> data1 = DummyData.getDataFromObjectArrayMatrixAhp1();
+        List<MatrixInputAndNormalisasi> data1 = Calculation.getDataFromObjectArrayMatrixAhp1();
         tbKodifikasi.getItems().setAll(data1);
         
         col11.setCellValueFactory(new PropertyValueFactory<>("k1"));
@@ -102,7 +102,7 @@ public class PerbandinganController implements Initializable {
         col55.setCellValueFactory(new PropertyValueFactory<>("k5"));
         col66.setCellValueFactory(new PropertyValueFactory<>("k6"));
         col77.setCellValueFactory(new PropertyValueFactory<>("k7"));
-        List<MatrixInputAndNormalisasi> data2 = DummyData.getDataFromObjectArrayMatrixAhp2();
+        List<MatrixInputAndNormalisasi> data2 = Calculation.getDataFromObjectArrayMatrixAhp2();
         tbNormalisasi.getItems().setAll(data2);
         
         col111.setCellValueFactory(new PropertyValueFactory<>("k1"));
@@ -114,7 +114,7 @@ public class PerbandinganController implements Initializable {
         col777.setCellValueFactory(new PropertyValueFactory<>("k7"));
         col888.setCellValueFactory(new PropertyValueFactory<>("bobot"));
         col999.setCellValueFactory(new PropertyValueFactory<>("eigenVal"));
-        List<MatrixBobot> data3 = DummyData.getDataFromObjectArrayMatrixAhp3();
+        List<MatrixBobot> data3 = Calculation.getDataFromObjectArrayMatrixAhp3();
         tbMatrix.getItems().setAll(data3);
     }
     

@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
+import com.projects.simplescript.model.Storage;
 import com.projects.simplescript.model.biz.Anggota;
-import com.projects.simplescript.model.biz.DummyData;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,7 +54,7 @@ public class AnggotaController implements Initializable {
         namaAnggota.setCellValueFactory(new PropertyValueFactory<>("namaAnggota"));
         alamatAnggota.setCellValueFactory(new PropertyValueFactory<>("alamatAnggota"));
 
-        List<Anggota> lstAnggota = DummyData.getDummyAnggota();
+        List<Anggota> lstAnggota = Storage.getInstance().getAnggotas();
         tbAnggota.getItems().setAll(lstAnggota);
     }
 

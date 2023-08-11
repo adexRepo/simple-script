@@ -14,7 +14,7 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Button fx:id="btnAddNewAnggota" layoutX="17.0" layoutY="330.0" mnemonicParsing="false" text="Add New Anggota" />
+      <!-- <Button fx:id="btnAddNewAnggota" layoutX="17.0" layoutY="330.0" mnemonicParsing="false" text="Add New Anggota" /> -->
       <TableView fx:id="tbAnggota" layoutX="17.0" layoutY="76.0" prefHeight="244.0" prefWidth="800.0">
         <columns>
           <TableColumn fx:id="idAnggota"  prefWidth="56.0" text="No" />
@@ -22,8 +22,8 @@
             <TableColumn fx:id="alamatAnggota" prefWidth="450.0" text="Alamat" />
         </columns>
       </TableView>
-      <Button fx:id="btnRead" layoutX="461.0" layoutY="342.0" mnemonicParsing="false" onAction="#onReadAnggota" text="Read" />
+      <!-- <Button fx:id="btnRead" layoutX="461.0" layoutY="342.0" mnemonicParsing="false" onAction="#onReadAnggota" text="Read" />
       <Button fx:id="btnDelete" layoutX="584.0" layoutY="342.0" mnemonicParsing="false" onAction="#onDeleteAnggota" text="Delete" />
-      <Button fx:id="btnUpdate" layoutX="517.0" layoutY="342.0" mnemonicParsing="false" onAction="#onUpdateAnggota" text="Update" />
+      <Button fx:id="btnUpdate" layoutX="517.0" layoutY="342.0" mnemonicParsing="false" onAction="#onUpdateAnggota" text="Update" /> -->
    </children>
 </AnchorPane>

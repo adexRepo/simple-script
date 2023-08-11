@@ -16,6 +16,7 @@ import com.projects.simplescript.controller.biz.koperasi.AnggotaController;
 import com.projects.simplescript.controller.biz.koperasi.HasilPerhitunganController;
 import com.projects.simplescript.controller.biz.koperasi.KriteriaController;
 import com.projects.simplescript.controller.biz.koperasi.PerbandinganController;
+import com.projects.simplescript.controller.biz.koperasi.ReportController;
 import com.projects.simplescript.model.MenuItem;
 import com.projects.simplescript.services.MenuService;
 
@@ -136,6 +137,9 @@ public class MainController implements Initializable {
                     newTab.setContent(root);
                 }else if(tabName.equals("Hasil Perhitungan")){
                     Parent root = fxWeaver.loadView(HasilPerhitunganController.class);
+                    newTab.setContent(root);
+                }else if(tabName.equals("Report")){
+                    Parent root = fxWeaver.loadView(ReportController.class);
                     newTab.setContent(root);
                 }
 

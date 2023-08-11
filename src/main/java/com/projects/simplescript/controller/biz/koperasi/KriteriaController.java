@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
-import com.projects.simplescript.model.biz.DummyData;
+import com.projects.simplescript.model.Storage;
 import com.projects.simplescript.model.biz.Kriteria;
 import com.projects.simplescript.model.biz.SubKriteria;
 
@@ -79,8 +79,8 @@ public class KriteriaController implements Initializable {
         kriteriaId.setCellValueFactory(new PropertyValueFactory<>("kriteriaId"));
         kriteriaId.setVisible(false);
 
-        List<Kriteria> lstKriteria = DummyData.getDummyKriteria();
-        List<SubKriteria> lstSubKriteria = DummyData.getDummySubKriteria();
+        List<Kriteria> lstKriteria = Storage.getInstance().getKriteria();
+        List<SubKriteria> lstSubKriteria = Storage.getInstance().getSubKriteria();
         tbKriteria.getItems().setAll(lstKriteria);
         tbSubKriteria.getItems().setAll(lstSubKriteria);
     }

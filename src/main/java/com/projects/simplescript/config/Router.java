@@ -37,8 +37,6 @@ public class Router {
         stage.show();
     }
 
-
-
     public <T> Parent getController(Class<T> cl, ActionEvent ae) {
         Parent root = fxWeaver.loadView(cl);
        return root;

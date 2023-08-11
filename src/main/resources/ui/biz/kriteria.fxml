@@ -14,15 +14,15 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Button fx:id="btnAddKriteria" layoutX="24.0" layoutY="268.0" mnemonicParsing="false" onAction="#onAddKriteria" text="Add Kriteria" />
+      <!-- <Button fx:id="btnAddKriteria" layoutX="24.0" layoutY="268.0" mnemonicParsing="false" onAction="#onAddKriteria" text="Add Kriteria" /> -->
       <TableView fx:id="tbKriteria" layoutX="16.0" layoutY="62.0" onMouseClicked="#onClickRowTable" onSort="#onClickKriteriaTable" prefHeight="200.0" prefWidth="600.0">
         <columns>
           <TableColumn fx:id="idKriteria"  prefWidth="46.0" text="No" />
           <TableColumn fx:id="kriteriaName"  prefWidth="553.0" text="Nama Kriteria" />
         </columns>
       </TableView>
-      <Button fx:id="btnDeleteKriteria" layoutX="177.0" layoutY="268.0" mnemonicParsing="false" onAction="#onDeleteKriteria" text="DELETE" />
-      <Button fx:id="btnEditKriteria" layoutX="117.0" layoutY="268.0" mnemonicParsing="false" onAction="#onEditKriteria" text="EDIT" />
+      <!-- <Button fx:id="btnDeleteKriteria" layoutX="177.0" layoutY="268.0" mnemonicParsing="false" onAction="#onDeleteKriteria" text="DELETE" />
+      <Button fx:id="btnEditKriteria" layoutX="117.0" layoutY="268.0" mnemonicParsing="false" onAction="#onEditKriteria" text="EDIT" /> -->
       <TableView fx:id="tbSubKriteria" layoutX="16.0" layoutY="366.0" onSort="#onClickSubKriteriaTable" prefHeight="200.0" prefWidth="600.0">
          <columns>
             <TableColumn fx:id="idSubKriteria" prefWidth="51.0" text="No" />
@@ -31,9 +31,9 @@
             <TableColumn fx:id="kriteriaId" prefWidth="199.0" text="Nilai" />
          </columns>
       </TableView>
-      <Button fx:id="btnAddSubKriteria" layoutX="24.0" layoutY="572.0" mnemonicParsing="false" onAction="#onAddSubKriteria" text="Add Sub Kriteria" />
+      <!-- <Button fx:id="btnAddSubKriteria" layoutX="24.0" layoutY="572.0" mnemonicParsing="false" onAction="#onAddSubKriteria" text="Add Sub Kriteria" />
       <Button fx:id="btnDeleteSubKriteria" layoutX="190.0" layoutY="572.0" mnemonicParsing="false" onAction="#onDeleteSubKriteria" text="DELETE" />
-      <Button fx:id="btnEditSubKriteria" layoutX="137.0" layoutY="572.0" mnemonicParsing="false" onAction="#onEditSubKriteria" text="EDIT" />
+      <Button fx:id="btnEditSubKriteria" layoutX="137.0" layoutY="572.0" mnemonicParsing="false" onAction="#onEditSubKriteria" text="EDIT" /> -->
       <Label layoutX="257.0" layoutY="325.0" text="SUB KRITERIA">
          <font>
             <Font size="22.0" />

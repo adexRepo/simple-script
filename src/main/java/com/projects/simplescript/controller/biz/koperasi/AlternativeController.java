@@ -6,8 +6,9 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
+import com.projects.simplescript.config.Router;
+import com.projects.simplescript.model.Storage;
 import com.projects.simplescript.model.biz.AlternativeList;
-import com.projects.simplescript.model.biz.DummyData;
 import com.projects.simplescript.model.biz.Kodifikasi;
 
 import javafx.event.ActionEvent;
@@ -24,6 +25,8 @@ import net.rgielen.fxweaver.core.FxmlView;
 @FxmlView("/ui/biz/alternatifList.fxml")
 @RequiredArgsConstructor
 public class AlternativeController implements Initializable {
+
+    private final Router router;
 
     @FXML
     private Button btnUpdate;
@@ -78,7 +81,7 @@ public class AlternativeController implements Initializable {
 
     @FXML
     void onUpdate(ActionEvent event) {
-
+        router.popup(UpdateAlternatifController.class, event);
     }
 
     @Override
@@ -92,7 +95,7 @@ public class AlternativeController implements Initializable {
         coll6.setCellValueFactory(new PropertyValueFactory<>("catatanPinjaman"));
         coll7.setCellValueFactory(new PropertyValueFactory<>("tanggungan"));
 
-        List<AlternativeList> data1 = DummyData.getDataKuisioner();
+        List<AlternativeList> data1 = Storage.getInstance().getDisplayAlternatif();
         tblKuisioner.getItems().setAll(data1);
 
         col11.setCellValueFactory(new PropertyValueFactory<>("anggota"));
@@ -103,7 +106,7 @@ public class AlternativeController implements Initializable {
         col66.setCellValueFactory(new PropertyValueFactory<>("k5"));
         col77.setCellValueFactory(new PropertyValueFactory<>("k6"));
 
-        List<Kodifikasi> data2 = DummyData.getDataKodifikasi();
+        List<Kodifikasi> data2 = Storage.getInstance().getKodifikasi();
         tblKodifikasi.getItems().setAll(data2);
 
     }

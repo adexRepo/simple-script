@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
-import com.projects.simplescript.model.biz.DummyData;
+import com.projects.simplescript.model.biz.Calculation;
 import com.projects.simplescript.model.biz.HasilPriority;
 import com.projects.simplescript.model.biz.Kodifikasi;
 import com.projects.simplescript.model.biz.MatrixBobot;
@@ -77,7 +77,7 @@ public class HasilPerhitunganController implements Initializable {
         col6.setCellValueFactory(new PropertyValueFactory<>("k5"));
         col7.setCellValueFactory(new PropertyValueFactory<>("k6"));
 
-        List<Kodifikasi> data1 = DummyData.getDataHasilPerhitungan1();
+        List<Kodifikasi> data1 = Calculation.getDataHasilPerhitungan1();
         tblKodifikasi.getItems().setAll(data1);
 
         col11.setCellValueFactory(new PropertyValueFactory<>("k1"));
@@ -89,13 +89,13 @@ public class HasilPerhitunganController implements Initializable {
         col77.setCellValueFactory(new PropertyValueFactory<>("k7"));
         col88.setCellValueFactory(new PropertyValueFactory<>("bobot"));
 
-        List<MatrixBobot> data2 = DummyData.getDataHasilPerhitungan2();
+        List<MatrixBobot> data2 = Calculation.getDataHasilPerhitungan2();
         tblKodifikasiNormalisasi.getItems().setAll(data2);
 
         col111.setCellValueFactory(new PropertyValueFactory<>("namaAlternative"));
         col222.setCellValueFactory(new PropertyValueFactory<>("hasil"));
 
-        List<HasilPriority> data3 = DummyData.getDataHasilPerhitungan3();
+        List<HasilPriority> data3 = Calculation.getDataHasilPerhitungan3();
         tblHasil.getItems().setAll(data3);
 
     }

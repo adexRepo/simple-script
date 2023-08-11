@@ -33,6 +33,8 @@ public class GenerateReport {
                 return export("rataRata", data, "pdf", "Report-Rata-rata-Penilaian");
             } else if (typeReport.equals("reportKeseluruhan")) {
                 return export("reportKeseluruhan", data, "pdf", "Report-Penilaian-Keseluruhan");
+            } else if (typeReport.equals("reportKoperasi")) {
+                return export("reportKoperasi", data, "pdf", "Report Koperasi");
             }else{
                 return "Gagal";
             }

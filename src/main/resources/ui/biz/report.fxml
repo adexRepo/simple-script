@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" fx:controller="com.projects.simplescript.controller.biz.koperasi.ReportController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tblReport1" layoutX="14.0" layoutY="83.0" prefHeight="200.0" prefWidth="595.0">
+        <columns>
+          <TableColumn fx:id="col1" prefWidth="96.0" text="Anggota" />
+          <TableColumn fx:id="col2" prefWidth="54.0" text="K1" />
+            <TableColumn fx:id="col3" prefWidth="54.0" text="K2" />
+            <TableColumn fx:id="col4" prefWidth="54.0" text="K3" />
+            <TableColumn fx:id="col5" prefWidth="54.0" text="K4" />
+            <TableColumn fx:id="col6" prefWidth="54.0" text="K5" />
+            <TableColumn fx:id="col7" prefWidth="54.0" text="K6" />
+            <TableColumn fx:id="col8" prefWidth="83.0" text="Score" />
+            <TableColumn fx:id="col9" prefWidth="90.0" text="Kelayakan" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnDownload" layoutX="512.0" layoutY="50.0" mnemonicParsing="false" onAction="#onDownloadPdf" text="Download PDF" />
+      <Label layoutX="21.0" layoutY="23.0" text="Report Hasil Keputusan ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="49.0" text="Kelayakan Peminjaman Koperasi">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
