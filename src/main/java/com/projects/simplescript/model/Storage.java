@@ -2,7 +2,6 @@ package com.projects.simplescript.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.projects.simplescript.model.biz.AlternativeList;
 import com.projects.simplescript.model.biz.Anggota;
@@ -16,7 +15,6 @@ import lombok.Data;
 @Data
 public class Storage {
     private static Storage instance;
-    private Map<String, Object> data;
     private double[][] matrixBasic;
     private double[][] matrixAlternatif;
     private List<String> alternatif;
@@ -27,13 +25,13 @@ public class Storage {
     private List<Anggota> anggotas;
 
     private Storage() {
-        matrixBasic       = dataMatrix               ();
-        matrixAlternatif  = dataMatrixAlternative    ();
-        alternatif        = dataListAlternative      ();
-        kriteria          = getDummyKriteria         ();
-        subKriteria       = getDummySubKriteria      ();
-        kodifikasi        = dataKodifikasi           ();
-        displayAlternatif = getDisplayAlternatifDummy();
+        matrixBasic = dataMatrix();
+        alternatif = dataListAlternative();
+        kriteria = getDummyKriteria();
+        subKriteria = getDummySubKriteria();
+        kodifikasi = dataKodifikasi();
+        matrixAlternatif = dataMatrixAlternative(kodifikasi);
+        displayAlternatif = getDisplayAlternatifDummy(kodifikasi);
         anggotas = dataAnggotaDisplay();
     }
 
@@ -42,63 +40,26 @@ public class Storage {
             instance = new Storage();
         }
 
+        refresh();
         return instance;
     }
 
-    private static List<Kodifikasi> dataKodifikasi() {
-        List<String> anggota = dataListAlternative();
-        List<Kodifikasi> dataId = new ArrayList<>();
-
-        Kodifikasi a = new Kodifikasi(anggota.get(0), 2, 5, 10, 16, 20, 23);
-        Kodifikasi b = new Kodifikasi(anggota.get(1), 1, 6, 11, 16, 21, 24);
-        Kodifikasi c = new Kodifikasi(anggota.get(2), 3, 7, 10, 16, 19, 22);
-
-        dataId.add(a);
-        dataId.add(b);
-        dataId.add(c);
-
-        return dataId;
+    public static void refresh() {
+        instance.setMatrixAlternatif(dataMatrixAlternative(null));
+        instance.setDisplayAlternatif(getDisplayAlternatifDummy(null));
+        instance.setAnggotas(dataAnggotaDisplay());
     }
 
-    private static double[][] dataMatrixAlternative() {
-        int size = getDummyKriteria().size();
-        List<Kodifikasi> kodifikasi = dataKodifikasi();
-        double[][] matrix = new double[kodifikasi.size()][size];
-        for (int index = 0; index < kodifikasi.size(); index++) {
-            Kodifikasi kod = kodifikasi.get(index);
-            Double nilaiK1 = helperGetNilai(kod.getK1());
-            Double nilaiK2 = helperGetNilai(kod.getK2());
-            Double nilaiK3 = helperGetNilai(kod.getK3());
-            Double nilaiK4 = helperGetNilai(kod.getK4());
-            Double nilaiK5 = helperGetNilai(kod.getK5());
-            Double nilaiK6 = helperGetNilai(kod.getK6());
-            matrix[index][0] = nilaiK1;
-            matrix[index][1] = nilaiK2;
-            matrix[index][2] = nilaiK3;
-            matrix[index][3] = nilaiK4;
-            matrix[index][4] = nilaiK5;
-            matrix[index][5] = nilaiK6;
-        }
-        return matrix;
-    }
-    private static Double helperGetNilai(Integer idSub){
-        List<SubKriteria> dataSubKriteria = getDummySubKriteria();
-        SubKriteria subKriteriaDtl = dataSubKriteria.stream()
-                .filter(val -> val.getId().equals(idSub))
-                .findFirst()
-                .orElse(null);
-        
-        return subKriteriaDtl.getNilai().doubleValue();
-    }
+    /* ---------------------------------- BASIC --------------------------------- */
 
     private static double[][] dataMatrix() {
         double[][] perbMatriksInput = {
-                { 1   , 2   , 3   , 7   , 2  , 6 },
-                { 0.5 , 1   , 4   , 3   , 3  , 7 },
-                { 0.33, 0.25, 1   , 2   , 3  , 5 },
-                { 0.14, 0.33, 0.5 , 1   , 1  , 3 },
-                { 0.5 , 0.33, 0.33, 1   , 1  , 2 },
-                { 0.17, 0.14, 0.2 , 0.33, 0.5, 1 },
+                { 1, 2, 3, 7, 2, 6 },
+                { 0.5, 1, 4, 3, 3, 7 },
+                { 0.33, 0.25, 1, 2, 3, 5 },
+                { 0.14, 0.33, 0.5, 1, 1, 3 },
+                { 0.5, 0.33, 0.33, 1, 1, 2 },
+                { 0.17, 0.14, 0.2, 0.33, 0.5, 1 },
         };
         return perbMatriksInput;
     }
@@ -192,21 +153,60 @@ public class Storage {
         return result;
     }
 
-    private static List<AlternativeList> getDisplayAlternatifDummy() {
+    /* ------------------------------- DATA DEPEND ------------------------------ */
+
+    private static List<Kodifikasi> dataKodifikasi() {
+        List<String> anggota = dataListAlternative();
+        List<Kodifikasi> dataId = new ArrayList<>();
+
+        Kodifikasi a = new Kodifikasi(anggota.get(0), 2, 5, 10, 16, 20, 23);
+        Kodifikasi b = new Kodifikasi(anggota.get(1), 1, 6, 11, 16, 21, 24);
+        Kodifikasi c = new Kodifikasi(anggota.get(2), 3, 7, 10, 16, 19, 22);
+
+        dataId.add(a);
+        dataId.add(b);
+        dataId.add(c);
+
+        return dataId;
+    }
+
+    private static double[][] dataMatrixAlternative(List<Kodifikasi> inpKod) {
+        int size = getDummyKriteria().size();
+        List<Kodifikasi> kodifikasi = inpKod == null ? instance.getKodifikasi() : inpKod;
+        double[][] matrix = new double[kodifikasi.size()][size];
+        for (int index = 0; index < kodifikasi.size(); index++) {
+            Kodifikasi kod = kodifikasi.get(index);
+            Double nilaiK1 = helperGetNilai(kod.getK1());
+            Double nilaiK2 = helperGetNilai(kod.getK2());
+            Double nilaiK3 = helperGetNilai(kod.getK3());
+            Double nilaiK4 = helperGetNilai(kod.getK4());
+            Double nilaiK5 = helperGetNilai(kod.getK5());
+            Double nilaiK6 = helperGetNilai(kod.getK6());
+            matrix[index][0] = nilaiK1;
+            matrix[index][1] = nilaiK2;
+            matrix[index][2] = nilaiK3;
+            matrix[index][3] = nilaiK4;
+            matrix[index][4] = nilaiK5;
+            matrix[index][5] = nilaiK6;
+        }
+        return matrix;
+    }
+
+    private static List<AlternativeList> getDisplayAlternatifDummy(List<Kodifikasi> inpKod) {
 
         List<SubKriteria> subKriteria = getDummySubKriteria();
-        List<Kodifikasi> kodifikasiId = dataKodifikasi();
+        List<Kodifikasi> kodifikasiId = inpKod == null ? instance.getKodifikasi() : inpKod;
         List<AlternativeList> result = new ArrayList<>();
         for (Kodifikasi item : kodifikasiId) {
             AlternativeList alter = new AlternativeList();
             alter.setNamaAnggota(item.getAnggota());
 
-            SubKriteria k1 = helper(subKriteria,item.getK1());
-            SubKriteria k2 = helper(subKriteria,item.getK2());
-            SubKriteria k3 = helper(subKriteria,item.getK3());
-            SubKriteria k4 = helper(subKriteria,item.getK4());
-            SubKriteria k5 = helper(subKriteria,item.getK5());
-            SubKriteria k6 = helper(subKriteria,item.getK6());
+            SubKriteria k1 = helper(subKriteria, item.getK1());
+            SubKriteria k2 = helper(subKriteria, item.getK2());
+            SubKriteria k3 = helper(subKriteria, item.getK3());
+            SubKriteria k4 = helper(subKriteria, item.getK4());
+            SubKriteria k5 = helper(subKriteria, item.getK5());
+            SubKriteria k6 = helper(subKriteria, item.getK6());
 
             alter.setBiayaPendidikan(k1.getSubkriteriaName());
             alter.setPembelianRumah(k2.getSubkriteriaName());
@@ -221,16 +221,16 @@ public class Storage {
         return result;
     }
 
-    private static SubKriteria helper(List<SubKriteria> subKriterias,Integer tgt){
-         SubKriteria k = subKriterias.stream()
-            .filter(val -> val.getId().equals(tgt))
-            .findFirst()
-            .orElse(null);
+    private static SubKriteria helper(List<SubKriteria> subKriterias, Integer tgt) {
+        SubKriteria k = subKriterias.stream()
+                .filter(val -> val.getId().equals(tgt))
+                .findFirst()
+                .orElse(null);
 
         return k;
     }
 
-        private static List<Anggota> dataAnggotaDisplay() {
+    private static List<Anggota> dataAnggotaDisplay() {
 
         List<Anggota> result = new ArrayList<>();
         List<String> anggotas = dataListAlternative();
@@ -248,4 +248,13 @@ public class Storage {
         return result;
     }
 
+    private static Double helperGetNilai(Integer idSub) {
+        List<SubKriteria> dataSubKriteria = getDummySubKriteria();
+        SubKriteria subKriteriaDtl = dataSubKriteria.stream()
+                .filter(val -> val.getId().equals(idSub))
+                .findFirst()
+                .orElse(null);
+
+        return subKriteriaDtl.getNilai().doubleValue();
+    }
 }

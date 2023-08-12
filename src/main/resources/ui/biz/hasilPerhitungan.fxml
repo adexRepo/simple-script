@@ -12,12 +12,12 @@
       <TableView fx:id="tblKodifikasi" layoutX="14.0" layoutY="59.0" prefHeight="136.0" prefWidth="546.0">
          <columns>
             <TableColumn fx:id="col1" prefWidth="112.0" text="Alternatif" />
-            <TableColumn fx:id="col2" text="K1" />
-            <TableColumn fx:id="col3" prefWidth="68.0" text="K2" />
-            <TableColumn fx:id="col4" prefWidth="75.0" text="K3" />
-            <TableColumn fx:id="col5" prefWidth="78.0" text="K4" />
-            <TableColumn fx:id="col6" prefWidth="67.0" text="K5" />
-            <TableColumn fx:id="col7" prefWidth="67.0" text="K6" />
+            <TableColumn fx:id="col2" text="Nilai K1" />
+            <TableColumn fx:id="col3" prefWidth="68.0" text="Nilai K2" />
+            <TableColumn fx:id="col4" prefWidth="75.0" text="Nilai K3" />
+            <TableColumn fx:id="col5" prefWidth="78.0" text="Nilai K4" />
+            <TableColumn fx:id="col6" prefWidth="67.0" text="Nilai K5" />
+            <TableColumn fx:id="col7" prefWidth="67.0" text="Nilai K6" />
          </columns>
       </TableView>
       <TableView fx:id="tblKodifikasiNormalisasi" layoutX="14.0" layoutY="241.0" prefHeight="136.0" prefWidth="618.0">
@@ -38,12 +38,12 @@
             <TableColumn fx:id="col222" text="Skor Total" />
          </columns>
       </TableView>
-      <Label layoutX="14.0" layoutY="22.0" text="Matrix Hasil Kodifikasi">
+      <Label layoutX="14.0" layoutY="22.0" text="Matrix Hasil Kodifikasi Nilai">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="205.0" text="Matrix Hasil Kodifikasi Normalisasi">
+      <Label layoutX="14.0" layoutY="205.0" text="Matrix Hasil Kodifikasi Nilai Yang Normalisasi">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
