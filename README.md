@@ -1,2 +1,2 @@
 # scriptions
-Dynamic for Last Task In College
+Project simple yang penting jadi.
