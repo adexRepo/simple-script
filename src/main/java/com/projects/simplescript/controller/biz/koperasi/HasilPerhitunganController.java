@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
+import com.projects.simplescript.model.Storage;
 import com.projects.simplescript.model.biz.Calculation;
 import com.projects.simplescript.model.biz.HasilPriority;
 import com.projects.simplescript.model.biz.Kodifikasi;
@@ -97,7 +98,7 @@ public class HasilPerhitunganController implements Initializable {
 
         List<HasilPriority> data3 = Calculation.getDataHasilPerhitungan3();
         tblHasil.getItems().setAll(data3);
-
+                Storage.checkConfig();
     }
 
 }

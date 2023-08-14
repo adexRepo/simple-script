@@ -7,8 +7,10 @@ import javafx.application.Application;
 @SpringBootApplication
 public class SimpleScriptApplication {
 
-	public static void main(String[] args) {
-        Application.launch(FxApplication.class, args);
+
+	public static void main(String[] args) throws Exception {
+		Application.launch(FxApplication.class, args);
 	}
+
 
 }

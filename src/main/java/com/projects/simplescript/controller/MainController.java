@@ -18,6 +18,7 @@ import com.projects.simplescript.controller.biz.koperasi.KriteriaController;
 import com.projects.simplescript.controller.biz.koperasi.PerbandinganController;
 import com.projects.simplescript.controller.biz.koperasi.ReportController;
 import com.projects.simplescript.model.MenuItem;
+import com.projects.simplescript.model.Storage;
 import com.projects.simplescript.services.MenuService;
 
 import javafx.fxml.FXML;
@@ -59,6 +60,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Storage.checkConfig();
         Image image = new Image(getClass().getResourceAsStream("/images/logo.png"));
         img.setImage(image);
 
@@ -96,9 +98,11 @@ public class MainController implements Initializable {
         for (TreeItem<String> child : rootItem.getChildren()) {
             child.setExpanded(true);
         }
+                Storage.checkConfig();
     }
 
     private void setupTreeViewItemClickHandler() {
+                        Storage.checkConfig();
         tree.setOnMouseClicked(event -> {
             TreeItem<String> selectedItem = tree.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
@@ -143,33 +147,7 @@ public class MainController implements Initializable {
                     newTab.setContent(root);
                 }
 
-
-                // boolean isGrid = storage.getMenuItems().stream()
-                //         .anyMatch(val -> val.getName().equals(tabName) && val.getGridId() != null);
-                // if (isGrid) {
-                //     storage.getCache().put("tabName", tabName);
-                //     Parent root = fxWeaver.loadView(FrameGridController.class);
-                //     newTab.setContent(root);
-                // } else {
-
-                //     if(tabName.equals("Isi Evaluasi Kompetensi")){
-                //         Parent root = fxWeaver.loadView(CompetencyBasicController.class);
-                //         newTab.setContent(root);
-                //     }else if (tabName.equals("Isi Sasaran Kerja")){
-                //         Parent root = fxWeaver.loadView(WorkGoalsController.class);
-                //         newTab.setContent(root);
-                //     }else if (tabName.equals("Reports")){
-                //         Parent root = fxWeaver.loadView(ReportController.class);
-                //         newTab.setContent(root);
-                //     }else if (tabName.equals("Atur Evaluasi")){
-                //         Parent root = fxWeaver.loadView(EvaluationMgmtController.class);
-                //         newTab.setContent(root);
-                //     }
-                //     else{
-                //         Label root = new Label("Logout OK");
-                //         newTab.setContent(root);
-                //     }
-                // }
+                Storage.checkConfig();
                 tab.getTabs().add(newTab);
                 tab.getSelectionModel().select(newTab);
             }

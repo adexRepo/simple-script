@@ -2,10 +2,6 @@ package com.projects.simplescript.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,11 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-@Table(name = "users")
+// @Entity
+// @Table(name = "users")
 public class User {
 
-    @Id
+    // @Id
     private Integer       id         ;
     
     private LocalDateTime createdAt  ;

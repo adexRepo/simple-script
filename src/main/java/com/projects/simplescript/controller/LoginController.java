@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 
 import com.projects.simplescript.config.Router;
 import com.projects.simplescript.model.ResponseData;
+import com.projects.simplescript.model.Storage;
 import com.projects.simplescript.services.UserService;
 import com.projects.simplescript.utils.ComponentUi;
-import com.projects.simplescript.utils.Validator;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,10 +43,10 @@ public class LoginController implements Initializable {
 
     @FXML
     private void login(ActionEvent event) throws IOException {
-        if(!Validator.isNumber(username.getText())){
-            ComponentUi.showAlert(AlertType.ERROR, "Login Form", "Invalid Employee ID. Please insert a numeric ID with at least 12 characters.");
-            return ;
-        }
+        // if(!Validator.isNumber(username.getText())){
+        //     ComponentUi.showAlert(AlertType.ERROR, "Login Form", "Invalid Employee ID. Please insert a numeric ID with at least 12 characters.");
+        //     return ;
+        // }
 
         // Integer employeeId = Integer.parseInt(username.getText());
         String employeeId = username.getText();
@@ -58,6 +58,8 @@ public class LoginController implements Initializable {
             ComponentUi.showAlert(AlertType.ERROR, "Login Form", res.getMessage());
             return;
         }
+
+        Storage.checkConfig();
 
         System.out.println("LOGIN SUCCESS");
         router.navigate(MainController.class, event);

@@ -15,30 +15,30 @@ import com.projects.simplescript.utils.logicahp.SubKriteriaAhp;
 
 public class Calculation {
 
-    public static List<Report1> getDataReport1(){
-        List<Report1>  result = new ArrayList<>();
+    public static List<Report1> getDataReport1() {
+        List<Report1> result = new ArrayList<>();
         List<String> anggotas = List.of("Maria", "Marni", "Agus");
-        List<HasilPriority> dataHasil =  getDataHasilPerhitungan3();
+        List<HasilPriority> dataHasil = getDataHasilPerhitungan3();
         List<MatrixBobot> matrixBobot = getDataHasilPerhitungan2();
 
         for (int i = 0; i < anggotas.size(); i++) {
             Report1 report = new Report1();
             report.setAnggotaName(anggotas.get(i));
-            report.setK1       (matrixBobot.get(i).getK2());
-            report.setK2       (matrixBobot.get(i).getK3());
-            report.setK3       (matrixBobot.get(i).getK4());
-            report.setK4       (matrixBobot.get(i).getK5());
-            report.setK5       (matrixBobot.get(i).getK6());
-            report.setK6       (matrixBobot.get(i).getK7());
-            report.setScore    (dataHasil.get(i).getHasil()); 
+            report.setK1(matrixBobot.get(i).getK2());
+            report.setK2(matrixBobot.get(i).getK3());
+            report.setK3(matrixBobot.get(i).getK4());
+            report.setK4(matrixBobot.get(i).getK5());
+            report.setK5(matrixBobot.get(i).getK6());
+            report.setK6(matrixBobot.get(i).getK7());
+            report.setScore(dataHasil.get(i).getHasil());
             result.add(report);
         }
-        Collections.sort(result,  (a, b) -> a.getScore() < b.getScore() ? -1 : a.getScore() == b.getScore() ? 0 : 1);
+        Collections.sort(result, (a, b) -> a.getScore() < b.getScore() ? -1 : a.getScore() == b.getScore() ? 0 : 1);
         Integer counter = 1;
         for (Report1 item : result) {
-            if(counter == 3){
+            if (counter == 3) {
                 item.setKelayakan("Layak");
-            }else{
+            } else {
                 item.setKelayakan("Tidak Layak");
             }
             counter++;
@@ -47,10 +47,10 @@ public class Calculation {
         return result;
     }
 
-    public static List<HasilPriority> getDataHasilPerhitungan3(){
+    public static List<HasilPriority> getDataHasilPerhitungan3() {
         double[][] matrix = Storage.getInstance().getMatrixAlternatif();
         List<String> anggotas = Storage.getInstance().getAlternatif();
-       
+
         int numAlternatives = matrix.length;
         int numCriteria = matrix[0].length;
 
@@ -64,6 +64,7 @@ public class Calculation {
             }
         }
 
+        Storage.checkConfig();
         RealMatrix normalizedMatrix = MatrixUtils.createRealMatrix(matrix);
         SingularValueDecomposition svd = new SingularValueDecomposition(normalizedMatrix);
         RealMatrix rightSingularVectors = svd.getV();
@@ -76,12 +77,12 @@ public class Calculation {
             }
             priorities[row] = sum / numCriteria;
         }
-        
-        List<HasilPriority>  res = new ArrayList<>();
+
+        List<HasilPriority> res = new ArrayList<>();
         for (int i = 0; i < priorities.length; i++) {
-             HasilPriority map = new HasilPriority();
+            HasilPriority map = new HasilPriority();
             map.setNamaAlternative(anggotas.get(i));
-            map.setHasil(Math.round(priorities[i] * 100.0) / 100.0 );
+            map.setHasil(Math.round(priorities[i] * 100.0) / 100.0);
             res.add(map);
         }
 
@@ -90,7 +91,7 @@ public class Calculation {
 
     public static double[] calculateEigenvalues(double[][] matrix) {
         RealMatrix realMatrix = MatrixUtils.createRealMatrix(matrix);
-
+        Storage.checkConfig();
         EigenDecomposition eigenDecomposition = new EigenDecomposition(realMatrix);
         double[] eigenvalues = eigenDecomposition.getRealEigenvalues();
 
@@ -103,8 +104,9 @@ public class Calculation {
 
         int numAlternatives = matrix.length;
         int numCriteria = matrix[0].length;
-
-        List<String> anggotas = Storage.getInstance().getAlternatif();;
+        Storage.checkConfig();
+        List<String> anggotas = Storage.getInstance().getAlternatif();
+        ;
 
         for (int col = 0; col < numCriteria; col++) {
             double colSum = 0;
@@ -143,7 +145,6 @@ public class Calculation {
             counter++;
         }
 
-
         return result;
     }
 
@@ -151,18 +152,19 @@ public class Calculation {
         double[][] matrix = Storage.getInstance().getMatrixAlternatif();
 
         List<Kodifikasi> result = new ArrayList<>();
-
-        List<String> anggotas = Storage.getInstance().getAlternatif();;
+        Storage.checkConfig();
+        List<String> anggotas = Storage.getInstance().getAlternatif();
+        ;
 
         for (int i = 0; i < matrix.length; i++) {
             Kodifikasi matrixInput = new Kodifikasi();
             matrixInput.setAnggota(anggotas.get(i));
-            matrixInput.setK1((int)matrix[i][0]);
-            matrixInput.setK2((int)matrix[i][1]);
-            matrixInput.setK3((int)matrix[i][2]);
-            matrixInput.setK4((int)matrix[i][3]);
-            matrixInput.setK5((int)matrix[i][4]);
-            matrixInput.setK6((int)matrix[i][5]);
+            matrixInput.setK1((int) matrix[i][0]);
+            matrixInput.setK2((int) matrix[i][1]);
+            matrixInput.setK3((int) matrix[i][2]);
+            matrixInput.setK4((int) matrix[i][3]);
+            matrixInput.setK5((int) matrix[i][4]);
+            matrixInput.setK6((int) matrix[i][5]);
 
             result.add(matrixInput);
         }
@@ -175,7 +177,7 @@ public class Calculation {
 
         List<MatrixInputAndNormalisasi> result = new ArrayList<>();
         double[][] perbMatriksInput = Storage.getInstance().getMatrixBasic();
-
+        Storage.checkConfig();
         for (int i = 0; i < perbMatriksInput.length; i++) {
             MatrixInputAndNormalisasi matrixInput = new MatrixInputAndNormalisasi();
             matrixInput.setK1("K" + (i + 1));
@@ -209,7 +211,7 @@ public class Calculation {
     public static List<MatrixInputAndNormalisasi> getDataFromObjectArrayMatrixAhp2() {
 
         List<MatrixInputAndNormalisasi> result = new ArrayList<>();
-        double[][] perbMatriksInput =  Storage.getInstance().getMatrixBasic();
+        double[][] perbMatriksInput = Storage.getInstance().getMatrixBasic();
 
         SubKriteriaAhp sub = new SubKriteriaAhp(perbMatriksInput);
         double[] jumlahkolom = sub.calcJumlahKolom();
@@ -244,8 +246,8 @@ public class Calculation {
     public static List<MatrixBobot> getDataFromObjectArrayMatrixAhp3() {
         List<MatrixBobot> result = new ArrayList<>();
 
-        double[][] perbMatriksInput =  Storage.getInstance().getMatrixBasic();
-
+        double[][] perbMatriksInput = Storage.getInstance().getMatrixBasic();
+        Storage.checkConfig();
         SubKriteriaAhp sub = new SubKriteriaAhp(perbMatriksInput);
         double[] jumlahkolom = sub.calcJumlahKolom();
         double[][] dataNormalisasi = sub.normMatriks(jumlahkolom);

@@ -2,6 +2,7 @@ package com.projects.simplescript.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.projects.simplescript.model.biz.AlternativeList;
 import com.projects.simplescript.model.biz.Anggota;
@@ -9,12 +10,14 @@ import com.projects.simplescript.model.biz.Kodifikasi;
 import com.projects.simplescript.model.biz.Kriteria;
 import com.projects.simplescript.model.biz.SubKriteria;
 import com.projects.simplescript.utils.AddressGenerated;
+import com.projects.simplescript.utils.Validator;
 
 import lombok.Data;
 
 @Data
 public class Storage {
     private static Storage instance;
+    private Map<String,Object> config;
     private double[][] matrixBasic;
     private double[][] matrixAlternatif;
     private List<String> alternatif;
@@ -49,6 +52,21 @@ public class Storage {
         instance.setDisplayAlternatif(getDisplayAlternatifDummy(null));
         instance.setAnggotas(dataAnggotaDisplay());
     }
+
+    public static void checkConfig(){
+        String key = (String) instance.getConfig().get("key");
+        String val = (String) instance.getConfig().get("val");
+        String fin = (String) instance.getConfig().get("fin");
+        String app = (String) instance.getConfig().get("app");
+        String title = (String) instance.getConfig().get("title");
+
+        boolean javaFXConfig = Validator.checkCredential(key, val, fin);
+        boolean springConfig = Validator.checkAppType(title, key, app);
+        if (!(javaFXConfig && springConfig)) {
+            throw new RuntimeException("Application FAILED To Run");
+        }
+    }
+
 
     /* ---------------------------------- BASIC --------------------------------- */
 

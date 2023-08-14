@@ -56,6 +56,7 @@ public class AnggotaController implements Initializable {
 
         List<Anggota> lstAnggota = Storage.getInstance().getAnggotas();
         tbAnggota.getItems().setAll(lstAnggota);
+                        Storage.checkConfig();
     }
 
     @FXML
