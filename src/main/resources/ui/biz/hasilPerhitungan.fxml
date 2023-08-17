@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" fx:controller="com.projects.simplescript.controller.biz.koperasi.HasilPerhitunganController"  maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" fx:controller="com.projects.simplescript.controller.biz.koperasi.HasilPerhitunganController"  maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TableView fx:id="tblKodifikasi" layoutX="14.0" layoutY="59.0" prefHeight="136.0" prefWidth="546.0">
          <columns>

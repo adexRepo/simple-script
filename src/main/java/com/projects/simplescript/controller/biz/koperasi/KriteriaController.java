@@ -6,9 +6,9 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
-import com.projects.simplescript.model.Storage;
-import com.projects.simplescript.model.biz.Kriteria;
-import com.projects.simplescript.model.biz.SubKriteria;
+import com.projects.simplescript.model.biz.KriteriaNew;
+import com.projects.simplescript.model.biz.SubKriteriaNew;
+import com.projects.simplescript.services.AhpService;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +25,8 @@ import net.rgielen.fxweaver.core.FxmlView;
 @FxmlView("/ui/biz/kriteria.fxml")
 @RequiredArgsConstructor
 public class KriteriaController implements Initializable {
+
+  private final AhpService service;
 
   @FXML
     private Button btnAddKriteria;
@@ -45,28 +47,28 @@ public class KriteriaController implements Initializable {
     private Button btnEditSubKriteria;
 
     @FXML
-    private TableView<Kriteria> tbKriteria;
+    private TableView<KriteriaNew> tbKriteria;
 
     @FXML
-    private TableColumn<Kriteria, String> idKriteria;
+    private TableColumn<KriteriaNew, String> idKriteria;
 
     @FXML
-    private TableColumn<Kriteria, String> kriteriaName;
+    private TableColumn<KriteriaNew, String> kriteriaName;
 
     @FXML
-    private TableView<SubKriteria> tbSubKriteria;
+    private TableView<SubKriteriaNew> tbSubKriteria;
 
     @FXML
-    private TableColumn<SubKriteria, Integer> idSubKriteria;
+    private TableColumn<SubKriteriaNew, Integer> idSubKriteria;
 
     @FXML
-    private TableColumn<SubKriteria, String> SubkriteriaName;
+    private TableColumn<SubKriteriaNew, String> SubkriteriaName;
 
     @FXML
-    private TableColumn<SubKriteria, Integer> nilai;
+    private TableColumn<SubKriteriaNew, Integer> nilai;
 
     @FXML
-    private TableColumn<SubKriteria, Integer> kriteriaId;
+    private TableColumn<SubKriteriaNew, Integer> kriteriaId;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,15 +76,21 @@ public class KriteriaController implements Initializable {
         kriteriaName.setCellValueFactory(new PropertyValueFactory<>("kriteriaName"));
 
         idSubKriteria.setCellValueFactory(new PropertyValueFactory<>("id"));
-        SubkriteriaName.setCellValueFactory(new PropertyValueFactory<>("SubkriteriaName"));
+        SubkriteriaName.setCellValueFactory(new PropertyValueFactory<>("subKriteriaName"));
         nilai.setCellValueFactory(new PropertyValueFactory<>("nilai"));
         kriteriaId.setCellValueFactory(new PropertyValueFactory<>("kriteriaId"));
         kriteriaId.setVisible(false);
 
-        List<Kriteria> lstKriteria = Storage.getInstance().getKriteria();
-        List<SubKriteria> lstSubKriteria = Storage.getInstance().getSubKriteria();
+        List<KriteriaNew> lstKriteria =  service.getAllKriteria();
         tbKriteria.getItems().setAll(lstKriteria);
-        tbSubKriteria.getItems().setAll(lstSubKriteria);
+    }
+
+    @FXML
+    void onClickRowTable(MouseEvent event) {
+      KriteriaNew item = tbKriteria.getSelectionModel().getSelectedItem();
+
+      List<SubKriteriaNew>lstSub = service.getSubKriteriaByIdKriteria(item.getId());
+      tbSubKriteria.getItems().setAll(lstSub);
     }
 
     @FXML
@@ -97,11 +105,6 @@ public class KriteriaController implements Initializable {
 
     @FXML
     void onClickKriteriaTable(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onClickRowTable(MouseEvent event) {
 
     }
 

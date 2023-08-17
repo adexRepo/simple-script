@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projects.simplescript.controller.biz.koperasi.AlternativeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projects.simplescript.controller.biz.koperasi.AlternativeController">
    <children>
       <TableView fx:id="tblKuisioner" layoutX="14.0" layoutY="69.0" prefHeight="123.0" prefWidth="704.0">
         <columns>
@@ -38,7 +38,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="12.0" layoutY="230.0" text="Hasil Kodifikasi">
+      <Label layoutX="12.0" layoutY="230.0" text="Nilai Berdasarkan Kuisioner">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

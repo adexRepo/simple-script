@@ -7,9 +7,9 @@ import java.util.ResourceBundle;
 import org.springframework.stereotype.Component;
 
 import com.projects.simplescript.config.Router;
-import com.projects.simplescript.model.Storage;
 import com.projects.simplescript.model.biz.AlternativeList;
 import com.projects.simplescript.model.biz.Kodifikasi;
+import com.projects.simplescript.services.AhpService;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,6 +27,8 @@ import net.rgielen.fxweaver.core.FxmlView;
 public class AlternativeController implements Initializable {
 
     private final Router router;
+
+    private final AhpService service;
 
     @FXML
     private Button btnUpdate;
@@ -95,7 +97,7 @@ public class AlternativeController implements Initializable {
         coll6.setCellValueFactory(new PropertyValueFactory<>("catatanPinjaman"));
         coll7.setCellValueFactory(new PropertyValueFactory<>("tanggungan"));
 
-        List<AlternativeList> data1 = Storage.getInstance().getDisplayAlternatif();
+        List<AlternativeList> data1 = service.getAllAlternatifValueName();//Storage.getInstance().getDisplayAlternatif();
         tblKuisioner.getItems().setAll(data1);
 
         col11.setCellValueFactory(new PropertyValueFactory<>("anggota"));
@@ -106,7 +108,7 @@ public class AlternativeController implements Initializable {
         col66.setCellValueFactory(new PropertyValueFactory<>("k5"));
         col77.setCellValueFactory(new PropertyValueFactory<>("k6"));
 
-        List<Kodifikasi> data2 = Storage.getInstance().getKodifikasi();
+        List<Kodifikasi> data2 = service.getAllAlternatifValueNilai();//Storage.getInstance().getKodifikasi();
         tblKodifikasi.getItems().setAll(data2);
 
     }

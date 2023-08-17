@@ -7,7 +7,10 @@ import java.util.ResourceBundle;
 import org.springframework.stereotype.Component;
 
 import com.projects.simplescript.model.biz.Calculation;
+import com.projects.simplescript.model.biz.Kodifikasi;
 import com.projects.simplescript.model.biz.Report1;
+import com.projects.simplescript.model.biz.Report2;
+import com.projects.simplescript.services.AhpService;
 import com.projects.simplescript.utils.ComponentUi;
 import com.projects.simplescript.utils.GenerateReport;
 
@@ -26,6 +29,8 @@ import net.rgielen.fxweaver.core.FxmlView;
 @FxmlView("/ui/biz/report.fxml")
 @RequiredArgsConstructor
 public class ReportController implements Initializable {
+
+    private final AhpService service;
 
     @FXML
     private Button btnDownload;
@@ -62,7 +67,10 @@ public class ReportController implements Initializable {
 
     @FXML
     void onDownloadPdf(ActionEvent event) throws Exception {
-        String result = GenerateReport.generate("reportKoperasi",Calculation.getDataReport1(),"pdf");
+        List<Kodifikasi> kodifikasi = service.getAllAlternatifValueNilai();
+        Integer countKriteria       = service.getAllKriteria().size();
+        List<Report2> report = Calculation.getReportForPdf(kodifikasi,countKriteria);
+        String result = GenerateReport.generate("reportKoperasi",report,"pdf");
         ComponentUi.showAlert(AlertType.INFORMATION, "Generate Report", result);
 
     }
@@ -79,7 +87,9 @@ public class ReportController implements Initializable {
         col8.setCellValueFactory(new PropertyValueFactory<>("score"));
         col9.setCellValueFactory(new PropertyValueFactory<>("kelayakan"));
 
-        List<Report1> data1 = Calculation.getDataReport1();
+        List<Kodifikasi> kodifikasi = service.getAllAlternatifValueNilai();
+        Integer countKriteria       = service.getAllKriteria().size();
+        List<Report1> data1 = Calculation.getDataReportDisplay(kodifikasi,countKriteria);
         tblReport1.getItems().setAll(data1);
 
     }

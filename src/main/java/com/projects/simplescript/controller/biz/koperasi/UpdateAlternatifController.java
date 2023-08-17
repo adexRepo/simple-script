@@ -1,17 +1,14 @@
 package com.projects.simplescript.controller.biz.koperasi;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
-import com.projects.simplescript.model.Storage;
-import com.projects.simplescript.model.biz.Anggota;
-import com.projects.simplescript.model.biz.Kodifikasi;
-import com.projects.simplescript.model.biz.Kriteria;
-import com.projects.simplescript.model.biz.SubKriteria;
+import com.projects.simplescript.model.biz.KriteriaNew;
+import com.projects.simplescript.model.biz.SubKriteriaNew;
+import com.projects.simplescript.services.AhpService;
 import com.projects.simplescript.utils.ComponentUi;
 
 import javafx.event.ActionEvent;
@@ -33,17 +30,19 @@ import net.rgielen.fxweaver.core.FxmlView;
 @RequiredArgsConstructor
 public class UpdateAlternatifController implements Initializable {
 
+    private final AhpService service;
+
     @FXML
     private ComboBox<String> cbNamaAnggota;
 
     @FXML
-    private TableView<Kriteria> tbKriteria;
+    private TableView<KriteriaNew> tbKriteria;
 
     @FXML
-    private TableColumn<Kriteria, String> idKriteria;
+    private TableColumn<KriteriaNew, String> idKriteria;
 
     @FXML
-    private TableColumn<Kriteria, String> kriteriaName;
+    private TableColumn<KriteriaNew, String> kriteriaName;
 
     @FXML
     private ComboBox<String> cbSubKriteria;
@@ -56,38 +55,21 @@ public class UpdateAlternatifController implements Initializable {
 
     @FXML
     private void onTambahButtonClick() {
-        String selectedItemSub = cbSubKriteria.getValue();
-        String selectedItemAnggota = cbNamaAnggota.getValue();
-        Kriteria selected = tbKriteria.getSelectionModel().getSelectedItem();
+        String subItem = cbSubKriteria.getValue();
+        String nama = cbNamaAnggota.getValue();
+        KriteriaNew kriteria = tbKriteria.getSelectionModel().getSelectedItem();
 
-        if(selectedItemSub == null || selectedItemAnggota == null || selected == null){
+        if(subItem.equals("") || nama.equals("") || kriteria == null){
             ComponentUi.showAlert(AlertType.WARNING, "Wajib Pilih", "Pilih terlebih dahulu nama dan sub kriteria");
         }
 
-        Storage storage = Storage.getInstance();
-        List<SubKriteria> subKriteria = new ArrayList<>(Storage.getInstance().getSubKriteria());
-        SubKriteria subKriteriaDtl = subKriteria.stream()
-                .filter(val -> val.getSubkriteriaName().equals(selectedItemSub))
-                .findFirst()
-                .orElse(null);
+        if(kriteria != null){
+            service.updateSubIdInAlternatifTableByName(nama,kriteria.getId(),subItem);
+        }
 
-        List<Kodifikasi> kodifikasi = storage.getKodifikasi();
-        for (Kodifikasi kod : kodifikasi) {
-            if (kod.getAnggota().equals(selectedItemAnggota)) {
-                if (subKriteriaDtl.getKriteriaId() == 1) {
-                    kod.setK1(subKriteriaDtl.getId());
-                } else if (subKriteriaDtl.getKriteriaId() == 2) {
-                    kod.setK2(subKriteriaDtl.getId());
-                } else if (subKriteriaDtl.getKriteriaId() == 3) {
-                    kod.setK3(subKriteriaDtl.getId());
-                } else if (subKriteriaDtl.getKriteriaId() == 4) {
-                    kod.setK4(subKriteriaDtl.getId());
-                } else if (subKriteriaDtl.getKriteriaId() == 5) {
-                    kod.setK5(subKriteriaDtl.getId());
-                } else if (subKriteriaDtl.getKriteriaId() == 6) {
-                    kod.setK6(subKriteriaDtl.getId());
-                }
-            }
+        if(kriteria != null){
+            ComponentUi.showAlert(AlertType.INFORMATION, "Update Data " + nama + " Success",
+                    kriteria.getKriteriaName() + " menjadi " + subItem);
         }
     }
 
@@ -100,39 +82,28 @@ public class UpdateAlternatifController implements Initializable {
 
     @FXML
     private void onSelectTable() {
-        Kriteria selected = tbKriteria.getSelectionModel().getSelectedItem();
+        KriteriaNew selected = tbKriteria.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            List<SubKriteria> subKriteria = new ArrayList<>(Storage.getInstance().getSubKriteria());
+            List<SubKriteriaNew> subKriteria = service.getSubKriteriaByIdKriteria(selected.getId());
             subKriteria.removeIf(val -> !val.getKriteriaId().equals(selected.getId()));
-            List<String> data = new ArrayList<>();
-            for (SubKriteria item : subKriteria) {
-                data.add(item.getSubkriteriaName());
-            }
+            List<String> data = subKriteria.stream().map(val-> val.getSubKriteriaName()).toList();
             cbSubKriteria.getItems().setAll(data);
         } else {
             cbSubKriteria.getItems().clear();
-            ;
         }
-
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        Storage store = Storage.getInstance();
-
         idKriteria.setCellValueFactory(new PropertyValueFactory<>("id"));
         kriteriaName.setCellValueFactory(new PropertyValueFactory<>("kriteriaName"));
         idKriteria.setVisible(false);
 
-        List<Kriteria> kriterias = store.getKriteria();
+        List<KriteriaNew> kriterias = service.getAllKriteria();
         tbKriteria.getItems().setAll(kriterias);
 
-        List<Anggota> anggota = store.getAnggotas();
-        List<String> dataCb = new ArrayList<>();
-        for (Anggota data : anggota) {
-            dataCb.add(data.getNamaAnggota());
-        }
+        List<String> dataCb = service.getAllAlternatif().stream().map(val-> val.getName()).toList();
         cbNamaAnggota.getItems().setAll(dataCb);
     }
 

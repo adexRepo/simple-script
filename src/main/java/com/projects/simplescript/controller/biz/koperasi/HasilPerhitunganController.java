@@ -11,6 +11,7 @@ import com.projects.simplescript.model.biz.Calculation;
 import com.projects.simplescript.model.biz.HasilPriority;
 import com.projects.simplescript.model.biz.Kodifikasi;
 import com.projects.simplescript.model.biz.MatrixBobot;
+import com.projects.simplescript.services.AhpService;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,6 +25,8 @@ import net.rgielen.fxweaver.core.FxmlView;
 @FxmlView("/ui/biz/hasilPerhitungan.fxml")
 @RequiredArgsConstructor
 public class HasilPerhitunganController implements Initializable {
+
+    private final AhpService service;
 
     @FXML
     private TableView<HasilPriority> tblHasil;
@@ -78,7 +81,7 @@ public class HasilPerhitunganController implements Initializable {
         col6.setCellValueFactory(new PropertyValueFactory<>("k5"));
         col7.setCellValueFactory(new PropertyValueFactory<>("k6"));
 
-        List<Kodifikasi> data1 = Calculation.getDataHasilPerhitungan1();
+        List<Kodifikasi> data1 = service.getAllAlternatifValueNilai();
         tblKodifikasi.getItems().setAll(data1);
 
         col11.setCellValueFactory(new PropertyValueFactory<>("k1"));
@@ -90,13 +93,14 @@ public class HasilPerhitunganController implements Initializable {
         col77.setCellValueFactory(new PropertyValueFactory<>("k7"));
         col88.setCellValueFactory(new PropertyValueFactory<>("bobot"));
 
-        List<MatrixBobot> data2 = Calculation.getDataHasilPerhitungan2();
+        Integer countKriteria = service.getAllKriteria().size();
+        List<MatrixBobot> data2 = Calculation.getDataHasilPerhitungan2(data1,countKriteria);
         tblKodifikasiNormalisasi.getItems().setAll(data2);
 
         col111.setCellValueFactory(new PropertyValueFactory<>("namaAlternative"));
         col222.setCellValueFactory(new PropertyValueFactory<>("hasil"));
 
-        List<HasilPriority> data3 = Calculation.getDataHasilPerhitungan3();
+        List<HasilPriority> data3 = Calculation.getDataHasilPerhitungan3("notAll",data1,countKriteria);
         tblHasil.getItems().setAll(data3);
                 Storage.checkConfig();
     }

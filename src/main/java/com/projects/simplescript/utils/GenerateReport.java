@@ -51,7 +51,7 @@ public class GenerateReport {
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data);
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("createdBy", "Adek Kristiyanto");
+        parameters.put("createdBy", "System Auto");
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         if (format.equalsIgnoreCase("html")) {
             JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\" + fileName + ".html");

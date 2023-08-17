@@ -7,7 +7,8 @@ import java.util.ResourceBundle;
 import org.springframework.stereotype.Component;
 
 import com.projects.simplescript.model.Storage;
-import com.projects.simplescript.model.biz.Anggota;
+import com.projects.simplescript.model.biz.AlternativeNew;
+import com.projects.simplescript.services.AhpService;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +25,8 @@ import net.rgielen.fxweaver.core.FxmlView;
 @RequiredArgsConstructor
 public class AnggotaController implements Initializable {
 
+    private final AhpService service;
+
     @FXML
     private Button btnAddNewAnggota;
 
@@ -37,24 +40,24 @@ public class AnggotaController implements Initializable {
     private Button btnUpdate;
 
     @FXML
-    private TableView<Anggota> tbAnggota;
+    private TableView<AlternativeNew> tbAnggota;
 
     @FXML
-    private TableColumn<Anggota, Integer> idAnggota;
+    private TableColumn<AlternativeNew, Integer> idAnggota;
 
     @FXML
-    private TableColumn<Anggota, String> namaAnggota;
+    private TableColumn<AlternativeNew, String> namaAnggota;
 
     @FXML
-    private TableColumn<Anggota, String> alamatAnggota;
+    private TableColumn<AlternativeNew, String> alamatAnggota;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        idAnggota.setCellValueFactory(new PropertyValueFactory<>("idAnggota"));
-        namaAnggota.setCellValueFactory(new PropertyValueFactory<>("namaAnggota"));
-        alamatAnggota.setCellValueFactory(new PropertyValueFactory<>("alamatAnggota"));
+        idAnggota.setCellValueFactory(new PropertyValueFactory<>("id"));
+        namaAnggota.setCellValueFactory(new PropertyValueFactory<>("name"));
+        alamatAnggota.setCellValueFactory(new PropertyValueFactory<>("alamat"));
 
-        List<Anggota> lstAnggota = Storage.getInstance().getAnggotas();
+        List<AlternativeNew> lstAnggota = service.getAllAlternatif();//Storage.getInstance().getAnggotas();
         tbAnggota.getItems().setAll(lstAnggota);
                         Storage.checkConfig();
     }
