@@ -6,6 +6,5 @@ import lombok.Data;
 public class Report2  {
     private String name;
     private Double value ;
-    private String result  ;
-
+    private String result ;
 }

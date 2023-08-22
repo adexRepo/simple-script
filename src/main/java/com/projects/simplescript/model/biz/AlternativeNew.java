@@ -14,29 +14,28 @@ import lombok.NoArgsConstructor;
 public class AlternativeNew {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String name;
     private String alamat;
 
     @Column(name = "k1_sub_id")
-    private int k1SubId;
+    private Integer k1SubId;
 
     @Column(name = "k2_sub_id")
-    private int k2SubId;
+    private Integer k2SubId;
 
     @Column(name = "k3_sub_id")
-    private int k3SubId;
+    private Integer k3SubId;
 
     @Column(name = "k4_sub_id")
-    private int k4SubId;
+    private Integer k4SubId;
 
     @Column(name = "k5_sub_id")
-    private int k5SubId;
+    private Integer k5SubId;
 
     @Column(name = "k6_sub_id")
-    private int k6SubId;
+    private Integer k6SubId;
 
     private Double score;
     private String status;

@@ -1,13 +1,18 @@
 package com.projects.simplescript.controller.biz.koperasi;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
 import com.projects.simplescript.model.biz.Calculation;
 import com.projects.simplescript.model.biz.Kodifikasi;
+import com.projects.simplescript.model.biz.KriteriaNew;
+import com.projects.simplescript.model.biz.MatrixBobot;
 import com.projects.simplescript.model.biz.Report1;
 import com.projects.simplescript.model.biz.Report2;
 import com.projects.simplescript.services.AhpService;
@@ -68,9 +73,37 @@ public class ReportController implements Initializable {
     @FXML
     void onDownloadPdf(ActionEvent event) throws Exception {
         List<Kodifikasi> kodifikasi = service.getAllAlternatifValueNilai();
-        Integer countKriteria       = service.getAllKriteria().size();
-        List<Report2> report = Calculation.getReportForPdf(kodifikasi,countKriteria);
-        String result = GenerateReport.generate("reportKoperasi",report,"pdf");
+        Integer countKriteria = service.getAllKriteria().size();
+        List<Report2> report = Calculation.getReportForPdf(kodifikasi, countKriteria);
+        // report.stream().forEach(val -> val.setRealDate(realDate));
+        String result = GenerateReport.generate("reportKoperasi", report, "pdf");
+        ComponentUi.showAlert(AlertType.INFORMATION, "Generate Report", result);
+    }
+
+    @FXML
+    void onDownloadPdf2(ActionEvent event) throws Exception {
+        List<KriteriaNew> lstKriteria = service.getAllKriteria();
+        // lstKriteria.stream().forEach(val -> val.setRealDate(realDate));
+        String result = GenerateReport.generate("reportKriteria", lstKriteria, "pdf");
+        ComponentUi.showAlert(AlertType.INFORMATION, "Generate Report", result);
+    }
+
+    @FXML
+    void onDownloadPdf3(ActionEvent event) throws Exception {
+        List<Kodifikasi> kodifikasi = service.getAllAlternatifValueNilai();
+        Integer countKriteria = service.getAllKriteria().size();
+        List<MatrixBobot> data2 = Calculation.getDataHasilPerhitungan2(kodifikasi, countKriteria);
+        // data2.stream().forEach(val -> val.setRealDate(realDate));
+        String result = GenerateReport.generate("reportAlternatif", data2, "pdf");
+        ComponentUi.showAlert(AlertType.INFORMATION, "Generate Report", result);
+    }
+
+    @FXML
+    void onDownloadPdf4(ActionEvent event) throws Exception {
+        List<KriteriaNew> kriteria = service.getAllKriteria();
+        List<MatrixBobot> data3 = Calculation.getDataFromObjectArrayMatrixAhp3(kriteria);
+        // data3.stream().forEach(val -> val.setRealDate(realDate));
+        String result = GenerateReport.generate("reportPerhitunganAhp", data3, "pdf");
         ComponentUi.showAlert(AlertType.INFORMATION, "Generate Report", result);
 
     }
@@ -88,8 +121,8 @@ public class ReportController implements Initializable {
         col9.setCellValueFactory(new PropertyValueFactory<>("kelayakan"));
 
         List<Kodifikasi> kodifikasi = service.getAllAlternatifValueNilai();
-        Integer countKriteria       = service.getAllKriteria().size();
-        List<Report1> data1 = Calculation.getDataReportDisplay(kodifikasi,countKriteria);
+        Integer countKriteria = service.getAllKriteria().size();
+        List<Report1> data1 = Calculation.getDataReportDisplay(kodifikasi, countKriteria);
         tblReport1.getItems().setAll(data1);
 
     }

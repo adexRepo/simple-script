@@ -1,5 +1,9 @@
 package com.projects.simplescript;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.SingularValueDecomposition;
@@ -142,6 +146,15 @@ class SimpleScriptApplicationTests {
             }
             System.out.println();
         }
+    }
+
+    @Test
+    void testGetData(){
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("id", "ID"));
+
+        String formattedDate = currentDate.format(dateFormatter);
+        System.out.println("Jakarta, "+formattedDate);
     }
 
 }

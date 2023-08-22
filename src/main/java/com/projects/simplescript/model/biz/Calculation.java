@@ -174,7 +174,7 @@ public class Calculation {
         double[] jumlahBaris = sub.calcJumlahBaris(dataNormalisasi);
         Integer counter = 0;
         for (MatrixBobot map : result) {
-            map.setBobot(Math.round((jumlahBaris[counter] / 6) * 100.0) / 100.0);
+            map.setBobot((jumlahBaris[counter] / 6));
             counter++;
         }
 
@@ -219,7 +219,7 @@ public class Calculation {
             if(type.equals("all")){
                 map.setHasil(priorities[i]);
             }else{
-                map.setHasil(Math.round(priorities[i] * 100.0) / 100.0);
+                map.setHasil(priorities[i]);
             }
             res.add(map);
         }
@@ -284,7 +284,7 @@ public class Calculation {
         double[] jumlahBaris = sub.calcJumlahBaris(dataNormalisasi);
         Integer counter = 0;
         for (MatrixBobot map : result) {
-            map.setBobot(Math.round((jumlahBaris[counter] / 6) * 100.0) / 100.0);
+            map.setBobot((jumlahBaris[counter] / 6));
             counter++;
         }
 
@@ -309,7 +309,7 @@ public class Calculation {
 
         int i = 0;
         for (Double val : eigenvector.toArray()) {
-            result.get(i).setEigenVal(Math.round((val / 6) * 100.0) / 100.0);
+            result.get(i).setEigenVal((val / 6));
             i++;
         }
 

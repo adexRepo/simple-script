@@ -29,4 +29,11 @@ public interface AhpService {
 
     void updateValueKriteria(List<MatrixInputAndNormalisasi> items);
 
+    List<AlternativeNew> deleteAlternatif(Integer id);
+
+    List<AlternativeNew> updateDataAlternatif(Integer id, String string, String string2);
+
+    List<AlternativeNew> saveDataAnggota(String nama, String alamat, String data1, String data2, String data3, String data4, String data5,
+            String data6);
+
 }

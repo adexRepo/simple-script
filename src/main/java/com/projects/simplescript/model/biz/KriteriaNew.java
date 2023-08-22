@@ -36,10 +36,5 @@ public class KriteriaNew {
     @Column(name = "k6_val")
     private Double k6Val;
 
-
-
-
-
-
-
+    // private String realDate = new String();;
 }

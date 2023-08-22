@@ -12,5 +12,6 @@ public class MatrixBobot {
     private Double  k6       ;
     private Double  k7       ;
     private Double  bobot    ;
-    private Double  eigenVal ;  
+    private Double  eigenVal ;
+ 
 }

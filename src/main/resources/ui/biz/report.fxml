@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" fx:controller="com.projects.simplescript.controller.biz.koperasi.ReportController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" fx:controller="com.projects.simplescript.controller.biz.koperasi.ReportController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TableView fx:id="tblReport1" layoutX="14.0" layoutY="83.0" prefHeight="200.0" prefWidth="595.0">
         <columns>
@@ -34,5 +33,23 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Label layoutX="14.0" layoutY="300.0" text="Report Kriteria">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="339.0" text="Report Alternatif">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="377.0" text="Report Perhitungan AHP">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="244.0" onAction="#onDownloadPdf2"  layoutY="301.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="105.0" text="Download PDF" />
+      <Button layoutX="244.0" onAction="#onDownloadPdf3"  layoutY="340.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="105.0" text="Download PDF" />
+      <Button layoutX="244.0" onAction="#onDownloadPdf4"  layoutY="378.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="105.0" text="Download PDF" />
    </children>
 </AnchorPane>
